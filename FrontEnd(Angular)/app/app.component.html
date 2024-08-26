@@ -1,0 +1,96 @@
+<div class="container">
+  <h1 class="text-center"> College Module</h1>
+</div>
+
+<div class="card mt-2 bg-info col-lg-6 mx-auto" style="padding:20px">
+  <form #registerForm="ngForm" (ngSubmit)="register(registerForm)">
+    <div class="form-group">
+      <label for="id"> College id:</label>
+      <input type="text" #id (ngModel)="id" name="id" id="id" class="form-control" placeholder="college id:">
+    </div>
+ 
+    
+    <div class="form-group">
+      <label for="name"> College name:</label>
+      <input type="text" #name (ngModel)="name" name="name" id="name" class="form-control" placeholder="college name:">
+    </div>
+
+    <div class="form-group">
+      <label for="location"> College location:</label>
+      <input type="text" #location (ngModel)="location" name="location" id="location" class="form-control" placeholder="college location:">
+    </div>
+
+    <div class="form-group">
+      <label for="percentage"> College admin</label>
+      <input type="text" #admin (ngModel)="admin" name="admin" id="admin" class="form-control" placeholder="college admin:">
+    </div>
+    <div class="form-group">
+      <input type="submit" value="Register" class="btn btn-primary my-4">
+    </div>
+  </form>
+  <div class="mt-5">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th> id</th>
+          <th>name</th>
+          <th>location</th>
+          <th>admin</th>
+          <th> Edit</th>
+          <th> Delete</th>
+        </tr>
+      </thead>
+      <tbody class="tbody">
+        <tr *ngFor="let college of CollegeDetails">
+          <td> {{college.id}} </td>
+          <td>{{college.name}}</td>
+          <td>{{college.location}}</td>
+          <td>{{college.admin}}</td>
+
+          <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="edit(college)">Edit</button></td>
+          <td><button type="button" class="btn btn-danger" (click)="deleteCollege(college)">Delete</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="modal fade bg-info" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+  <div class="modal-dialog" style="transform: translate(-150px);">
+    <div class="modal-content bg-light" style="width: 800px;">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Update college</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body mx-5"style="height: 400px;">
+        <form #updateForm="ngForm" (ngSubmit)="updateCollege()">
+
+          <div class="form-group">
+            <label for="id"> college id:</label>
+            <input type="text" #id [(ngModel)]="collegeToUpdate.id" name="id" id="id" class="form-control" placeholder="College id:">
+          </div>
+      
+          <div class="form-group">
+            <label for="name">college name:</label>
+            <input type="text" #name [(ngModel)]="collegeToUpdate.name" name="name" id="name" class="form-control" placeholder="college name:">
+          </div>
+      
+          <div class="form-group">
+            <label for="location"> college location:</label>
+            <input type="text" #location [(ngModel)]="collegeToUpdate.location" name="location" id="location" class="form-control" placeholder="college location:">
+          </div>
+      
+          <div class="form-group">
+            <label for="percentage">college admin:</label>
+            <input type="text" #admin [(ngModel)]="collegeToUpdate.admin" name="admin" id="admin" class="form-control" placeholder="college admin:">
+          </div>
+          <div class="form-group">
+            <input type="submit" value="Update" class="btn btn-primary my-4" w-100>
+          </div>
+        </form>
+        
+      </div>
+      
+    </div>
+  </div>
+</div>
